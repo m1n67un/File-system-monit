@@ -4,6 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-notify = "4.0.17"
-syslog = "6.0.1"
+notify = "6.1.1"
+syslog = "7.0.0"
 log = "0.4.14"
