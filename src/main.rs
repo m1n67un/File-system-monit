@@ -1,7 +1,19 @@
-use notify::{RecommendedWatcher, RecursiveMode, Watcher, Config};
+mod handler;
+
+use handler::file_handler::watch;
+use notify::{
+    RecommendedWatcher, 
+    RecursiveMode, 
+    Watcher, 
+    Config
+};
 use std::path::Path;
-use syslog::{Facility, Formatter3164, BasicLogger};
-use log::{LevelFilter, warn};
+use syslog::{
+    Facility, 
+    Formatter3164, 
+    BasicLogger
+};
+use log::LevelFilter;
 
 fn main() {
     let path = std::env::args().nth(1).expect("Argument 1 needs to be a path");
@@ -22,25 +34,4 @@ fn main() {
     if let Err(e) = watch(path) {
         println!("Error: {:?}", e);
     }
-}
-
-fn watch<P: AsRef<Path>>(path: P) -> notify::Result<()> {
-    let (tx, rx) = std::sync::mpsc::channel();
-
-    let mut watcher = RecommendedWatcher::new(tx, Config::default())?;
-
-    watcher.watch(path.as_ref(), RecursiveMode::Recursive)?;
-
-    for res in rx {
-        match res {
-            Ok(event) => log_event(event),
-            Err(e) => println!("Watch error: {:?}", e),
-        }
-    }
-
-    Ok(())
-}
-
-fn log_event(event: notify::Event) {
-    warn!("Change occurred: {:?}", event);
 }
