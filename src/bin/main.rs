@@ -1,11 +1,4 @@
 use file_system_monit::handler::file_handler::watch;
-use notify::{
-    RecommendedWatcher, 
-    RecursiveMode, 
-    Watcher, 
-    Config
-};
-use std::path::Path;
 use syslog::{
     Facility, 
     Formatter3164, 
