@@ -13,21 +13,10 @@ file-system-monit - rust lang
 - Rust 프로그래밍 언어
 - Cargo 패키지 관리자
 
-## 설치
-
-1. 이 저장소를 클론합니다:
-
-git clone https://github.com/yourusername/rust-fs-monitor.git
-cd rust-fs-monitor
-
-2. 의존성 패키지를 설치합니다:
-cargo build
-
 ## 사용 방법
 
 다음 명령어로 프로그램을 실행합니다:
 cargo run -- /path/to/watch
-
 
 여기서 `/path/to/watch`는 모니터링하고자 하는 디렉토리 경로입니다.
 
